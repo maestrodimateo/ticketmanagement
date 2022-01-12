@@ -1,0 +1,28 @@
+{
+    "name": "bintou/ticketmanagement",
+    "description": "Application de gestion de tickets pour les pannes",
+    "authors": [
+        {
+            "name": "Bintou",
+            "email": "manfoumbilesly@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Http\\":"http/",
+            "Database\\":"database/",
+            "Services\\":"services/"
+        },
+        "files": ["helpers/helpers.php"]
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.4",
+        "nesbot/carbon": "^2.55",
+        "php-di/php-di": "^6.3",
+        "phpmailer/phpmailer": "^6.5"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^5.3"
+    }
+}
