@@ -27,13 +27,13 @@
                 <th scope="col" class="border-bottom">Déclaré le</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="table-id">
             <?php foreach($tickets as $ticket): ?>
                 <tr>
                     <td>
-                        <a href="#" class="btn btn-secondary">
-                            <span> Ticket_0<?= $ticket->id ?></span>
-                        </a>
+                        <button type="button" class="btn btn-secondary" data-id="<?= $ticket->id ?>">
+                            <?= $ticket->reference() ?>
+                        </button>
                     </td>
                     <td>
                         <span class="fw-normal"><?= $ticket->bug ?></span>
@@ -53,3 +53,4 @@
         </tbody>
     </table>
 </div>
+<?= includes('includes/_modal') ?>

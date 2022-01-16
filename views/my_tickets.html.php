@@ -39,7 +39,7 @@
                 <th scope="col" class="border-bottom">Action</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="table-id">
             <?php foreach($assigned_tickets as $ticket): ?>
                 <tr>
                     <td>
@@ -51,9 +51,9 @@
                         </div>
                     </td>
                     <td>
-                        <a href="#" class="btn btn-secondary modal_show" data-bs-toggle="modal" data-id="<?= $ticket->id ?>" data-bs-target="#view">
-                            <span><?= $ticket->reference() ?></span>
-                        </a>
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-id="<?= $ticket->id ?>">
+                            <?= $ticket->reference() ?>
+                        </button>
                     </td>
                     <td><span class="fw-normal"><?= $ticket->bug ?></span></td>
                     <td>
@@ -99,9 +99,4 @@
         </tbody>
     </table>
 </div>
-
-<div class="modal fade" id="view" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content"></div>
-    </div>
-</div>
+<?= includes('includes/_modal') ?>

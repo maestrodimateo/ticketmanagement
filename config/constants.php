@@ -6,4 +6,5 @@ define('ROOT', rtrim($_SERVER['DOCUMENT_ROOT'], 'public/'));
 define("ASSETS", $_SERVER['SERVER_NAME'] . '/');
 define('ROUTES', ROOT . '/routes/');
 define('VIEWS', ROOT . '/views/');
+define('VIEW_EXTENSION', '.html.php');
 ini_set("display_errors", $app_debug);

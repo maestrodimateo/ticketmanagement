@@ -13,11 +13,22 @@ class Ticket extends Model
     protected $table = 'tickets';
 
     /**
-     * A ticket is created by user
+     * A ticket is created by a user
+     * @return Model|null
      */
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    /**
+     * A ticket can be solved by a user
+     *
+     * @return Model|null
+     */
+    public function resolver()
+    {
+        return $this->belongsTo(User::class, 'resolver_id');
     }
 
     /**
@@ -74,6 +85,20 @@ class Ticket extends Model
     public function created_at(string $format = 'd/m/Y à H:i:s'): string
     {
         return Carbon::createFromTimeString($this->created_at)->format($format);
+    }
+
+    /**
+     * Format the closed_at attribute
+     *
+     * @param string $format
+     * @return string|null
+     */
+    public function closed_at(string $format = 'd/m/Y à H:i:s')
+    {
+        if ($this->closed_at) {
+            return Carbon::createFromTimeString($this->closed_at)->format($format);
+        }
+        return null;
     }
 
     /**

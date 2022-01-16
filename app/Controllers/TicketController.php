@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Controllers\Controller;
 use App\Mails\NotificationMail;
 use App\Resources\TicketResource;
+use Services\Generation\PdfGenerator;
 
 class TicketController extends Controller
 {
@@ -122,6 +123,18 @@ class TicketController extends Controller
     }
 
     /**
+     * Generate a pdf with a ticket information
+     *
+     * @param integer $id
+     * @return void
+     */
+    public function generate_pdf(int $id, PdfGenerator $pdf)
+    {
+        $data = $this->ticket_resource($id)->attributes();
+        $pdf->load_html('pdf/ticket', ['info' => $data, 'printed_at' => Carbon::now()])->download($data['reference']);
+    }
+
+    /**
      * list the tickets assigned to a specific admin
      *
      * @return void
@@ -152,11 +165,23 @@ class TicketController extends Controller
      */
     public function ticket(int $id)
     {
-        $ticket = $this->ticket_model->findBy('id', $id);
+        $data = $this->ticket_resource($id)->attributes();
 
-        $data = (new TicketResource($ticket))->attributes();
 
         return Response::json($data);
+    }
+
+    /**
+     * Retrieve data for a ticket resource
+     *
+     * @param integer $id
+     * @return TicketResource
+     */
+    private function ticket_resource(int $id): TicketResource
+    {
+        $ticket = $this->ticket_model->findBy('id', $id);
+
+        return new TicketResource($ticket);
     }
 
     /**

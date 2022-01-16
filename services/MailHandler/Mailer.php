@@ -14,7 +14,7 @@ abstract class Mailer
         $mail = new PHPMailer(true);
     
         // Config
-        // $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+        $mail->SMTPDebug = SMTP::DEBUG_OFF;
         $mail->isSMTP();
         $mail->Host       = env('mail_host');
         $mail->SMTPAuth   = true;
@@ -65,7 +65,7 @@ abstract class Mailer
      */
     protected function setBody(string $view, array $data = [])
     {
-        $view_file = VIEWS . $view . '.html.php';
+        $view_file = VIEWS . $view . VIEW_EXTENSION;
 
         $this->mail->msgHTML(get_file_content($view_file, $data));
     }

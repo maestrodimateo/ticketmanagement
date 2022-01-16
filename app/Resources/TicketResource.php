@@ -24,7 +24,7 @@ class TicketResource
             'solution' => $this->ticket->solution,
             'label' => $this->ticket->bug,
             'created_at' => $this->ticket->created_at(),
-            'closed_at' => $this->ticket->closed_at,
+            'closed_at' => $this->ticket->closed_at(),
             'user' => [
                 'name' => $this->user->nom,
                 'firstname' => $this->user->prenom,

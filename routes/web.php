@@ -19,6 +19,7 @@ $router->group(['middlewares' => ['auth']], [
     $router->get('/mes-tickets-assignes', [TicketController::class, 'my_tickets']),
     $router->get('/category/:label', [CategoryController::class, 'bugs']),
     $router->get('/ticket/:id', [TicketController::class, 'ticket']),
+    $router->post('/ticket/:id', [TicketController::class, 'generate_pdf']),
 ]);
 
 // Admin routes
