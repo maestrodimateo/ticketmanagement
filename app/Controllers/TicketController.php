@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use Carbon\Carbon;
 use Http\Response;
+use App\Models\User;
 use App\Models\Ticket;
 use App\Models\Category;
 use App\Controllers\Controller;
@@ -46,8 +47,8 @@ class TicketController extends Controller
      *
      * @return void
      */
-    public function post(NotificationMail $notificationMail)
-    {        
+    public function post(NotificationMail $notificationMail, User $user_model)
+    {
         $bug_id = $this->request->getBody()['bug'] == "0" ? 'true' : 'false';
 
         // form validation
@@ -60,13 +61,18 @@ class TicketController extends Controller
 
         $body = $this->request->getBody();
 
+        // admins who receive the notification
+        $user = $user_model->select(['mail'])->where('is_agent', 0)->get();
+        $emails = array_map(fn ($user) => $user->mail, $user);
+
         $body['user_id'] = auth()->id;
 
+        // Ticket creation
         $new_ticket = $this->ticket_model->create($body);
-
         $new_ticket->update(['reference' => "ticket_0$new_ticket->id"]);
 
-        $notificationMail->to(['noelmeb12@gmail.com'])->with($new_ticket)->send();
+        // Email notification
+        $notificationMail->to($emails)->with($new_ticket)->send();
 
         flash('Ticket ajouté avec succès');
 
@@ -131,7 +137,10 @@ class TicketController extends Controller
     public function generate_pdf(int $id, PdfGenerator $pdf)
     {
         $data = $this->ticket_resource($id)->attributes();
-        $pdf->load_html('pdf/ticket', ['info' => $data, 'printed_at' => Carbon::now()])->download($data['reference']);
+        $pdf->load_html('pdf/ticket', [
+            'info' => $data, 
+            'printed_at' => Carbon::now()]
+        )->download($data['reference']);
     }
 
     /**

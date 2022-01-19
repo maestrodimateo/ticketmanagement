@@ -38,6 +38,6 @@ class PdfGenerator
     {
         $name .= '.pdf';
         $this->pdf->render();
-        $this->pdf->stream($name, ['attachment' => false]);
+        $this->pdf->stream($name, ['Attachment' => 0]);
     }
 }
