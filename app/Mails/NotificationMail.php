@@ -13,7 +13,7 @@ class NotificationMail extends Mailer
      * Add data the to mail to be sent
      *
      * @param array $data
-     * @return void
+     * @return self
      */
     public function with(Ticket $ticket): self
     {

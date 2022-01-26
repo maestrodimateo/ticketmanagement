@@ -25,7 +25,8 @@ $router->group(['middlewares' => ['auth']], [
 // Admin routes
 $router->group(['middlewares' => ['auth', 'is_admin']], [
     $router->get('/tickets-declares', [TicketController::class, 'all']),
-    $router->post('/assigner', [TicketController::class, 'assign']),
+    $router->post('/assigner/:id', [TicketController::class, 'assign']),
+    $router->post('/desassigner/:id', [TicketController::class, 'unassign']),
     $router->post('/cloturer/:id', [TicketController::class, 'close_ticket']),
     $router->post('/supprimer-ticket/:id', [TicketController::class, 'delete']),
 ]);

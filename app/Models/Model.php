@@ -3,11 +3,7 @@ namespace App\Models;
 
 use App\Models\traits\Relationship;
 use Database\DbConnection;
-use Http\Request;
 use PDO;
-use Services\Paginator;
-
-use function DI\get;
 
 abstract class Model
 {

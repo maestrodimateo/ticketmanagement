@@ -6,7 +6,6 @@ use Http\Session;
 class Response
 {
     private static $layout;
-    private const EXTENSION = '.html.php';
 
     /**
      * Render the view without layout
@@ -39,7 +38,7 @@ class Response
 
         $content = get_file_content($view_file, $data);
 
-        require_once VIEWS . self::$layout . self::EXTENSION;
+        require_once VIEWS . self::$layout . VIEW_EXTENSION;
 
         Session::forget(['errors', 'flash']);
     }
@@ -52,7 +51,7 @@ class Response
      */
     private static function check_file(string $view)
     {
-        $view_file = VIEWS . $view . self::EXTENSION;
+        $view_file = VIEWS . $view . VIEW_EXTENSION;
         if (!file_exists($view_file)) throw new \Exception("Le ficher {$view_file} n'existe pas", 1);
         return $view_file;
     }
@@ -70,6 +69,12 @@ class Response
         header("Location: $path");
     }
 
+    /**
+     * Set the layout if it exists
+     *
+     * @param string $layout
+     * @return void
+     */
     public static function setLayout(string $layout):void
     {
         self::$layout = $layout;

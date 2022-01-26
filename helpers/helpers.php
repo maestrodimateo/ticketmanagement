@@ -110,10 +110,24 @@ if (! function_exists('auth')) {
      * get an auth value
      *
      * @param string $key
-     * @return Model|null
+     * @return User|null
      */
     function auth()
     {
         return Auth::user();
+    }
+}
+
+if (! function_exists('request')) {
+
+    /**
+     * get an auth value
+     *
+     * @param string $key
+     * @return Model|null
+     */
+    function request()
+    {
+        return Session::get('request');
     }
 }

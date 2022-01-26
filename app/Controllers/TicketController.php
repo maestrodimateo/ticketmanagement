@@ -175,8 +175,6 @@ class TicketController extends Controller
     public function ticket(int $id)
     {
         $data = $this->ticket_resource($id)->attributes();
-
-
         return Response::json($data);
     }
 
@@ -198,15 +196,27 @@ class TicketController extends Controller
      *
      * @return void
      */
-    public function assign()
+    public function assign(int $id)
     {
-        $id = $this->request->getBody()['id'];
-
         $this->ticket_model->update(['resolver_id' => auth()->id, 'state' => Ticket::PENDING], $id);
 
         flash("Vous avez choisi Le ticket numéro $id");
 
         return Response::redirect('/tickets-declares');
+    }
+
+    /**
+     * Assign a ticket to the current user
+     *
+     * @return void
+     */
+    public function unassign(int $id)
+    {
+        $this->ticket_model->update(['resolver_id' => null, 'state' => Ticket::OPEN], $id);
+
+        flash("Vous ne travaillez plus sur le ticket numéro $id");
+
+        return Response::back();
     }
 
     /**

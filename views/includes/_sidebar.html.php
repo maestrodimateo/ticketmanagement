@@ -7,7 +7,7 @@
                 </a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item <?= request()->is('nouveau-ticket') ? 'active' : '' ?> ">
                 <span class="nav-link collapsed d-flex justify-content-between align-items-center">
                     <a href="/nouveau-ticket">
                         <span class="sidebar-icon">
@@ -22,8 +22,8 @@
             </li>
 
             <!-- admin -->
-            <?php if(auth()->is_admin()):  ?>
-            <li class="nav-item">
+            <?php if(auth()->is_admin()): ?>
+            <li class="nav-item <?= request()->is('tickets-declares') ? 'active' : '' ?> ">
                 <span class="nav-link collapsed d-flex justify-content-between align-items-center">
                     <a href="/tickets-declares">
                         <span class="sidebar-icon">
@@ -35,7 +35,7 @@
                     </a>
                 </span>
             </li>
-            <li class="nav-item">
+            <li class="nav-item <?= request()->is('mes-tickets-assignes') ? 'active' : '' ?> " >
                 <span class="nav-link collapsed d-flex justify-content-between align-items-center">
                     <a href="/mes-tickets-assignes">
                         <span class="sidebar-icon">
@@ -50,7 +50,7 @@
             <?php endif ?>
             <!-- end admin -->
 
-            <li class="nav-item">
+            <li class="nav-item <?= request()->is('mes-tickets-declares') ? 'active' : '' ?> " >
                 <span class="nav-link collapsed d-flex justify-content-between align-items-center">
                     <a href="/mes-tickets-declares">
                         <span class="sidebar-icon">

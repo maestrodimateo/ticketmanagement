@@ -91,4 +91,15 @@ abstract class Session
         $_SESSION['flash'] = $message;
     }
 
+    /**
+     * Check if the session has a key
+     *
+     * @param string $key
+     * @return bool
+     */
+    public static function has(string $key): bool
+    {
+        return array_key_exists($key, $_SESSION);
+    }
+
 }

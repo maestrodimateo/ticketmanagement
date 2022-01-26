@@ -44,7 +44,9 @@ class User extends Model
      */
     public function assigned_tickets(): array
     {
-        return (new Ticket)->select()->where('resolver_id', auth()->id)->orderBy('created_at', 'desc')->get();
+        return (new Ticket)->noTrashed()
+        ->andWhere('resolver_id', auth()->id)
+        ->orderBy('created_at', 'desc')->get();
     }
 
     /**

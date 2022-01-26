@@ -7,13 +7,13 @@ class Request
 {
     private $path;
     private $method;
+
     /**
      * Body request
      *
      * @var array
      */
     private $body = [];
-    private $files = [];
 
     public static function createFromGlobals()
     {
@@ -21,7 +21,8 @@ class Request
         $instance->path = trim($_GET['url'], '/');
         $instance->method = $_SERVER['REQUEST_METHOD'];
         $instance->setBody();
-        $instance->keep_url();
+
+        Session::set('request', $instance);
         return $instance;
     }
 
@@ -85,17 +86,6 @@ class Request
         return Validator::validates($this->body, $rules);
     }
 
-    /**
-     * Keep the current url
-     *
-     * @return void
-     */
-    private function keep_url()
-    {
-        if ( $this->method === "GET" && !$this->isAjax()) {
-            Session::set('back', $this->path);
-        }
-    }
 
     /**
      * Check if the request is an ajax request
@@ -105,5 +95,16 @@ class Request
     public function isAjax()
     {
         return isset($_SERVER['HTTP_X_REQUESTED_WITH']);
+    }
+
+    /**
+     * Check if the current url matches with the provided string
+     *
+     * @param string $url
+     * @return bool
+     */
+    public function is(string $url): bool
+    {
+        return $this->path === $url;
     }
 }
