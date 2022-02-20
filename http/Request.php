@@ -33,7 +33,7 @@ class Request
      */
     private function setBody()
     {
-        if (empty($_POST)) return;
+        if (empty($_POST)) { return; }
 
         foreach ($_POST as $key => $value) {
             if (is_array($value)) {
@@ -92,7 +92,7 @@ class Request
      *
      * @return boolean
      */
-    public function isAjax()
+    public function isAjax(): bool
     {
         return isset($_SERVER['HTTP_X_REQUESTED_WITH']);
     }

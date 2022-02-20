@@ -10,6 +10,8 @@ class User extends Model
      */
     protected $table = 'users';
 
+    const AGENT = 1;
+    const ADMIN = 0;
 
     /**
      * credentials keys
@@ -34,7 +36,9 @@ class User extends Model
      */
     public function my_declared_tickets(): array
     {
-        return (new Ticket)->select()->where('user_id', auth()->id)->orderBy('created_at', 'desc')->get();
+        return (new Ticket)->select()
+        ->where('user_id', auth()->id)
+        ->orderBy('created_at', 'desc')->get();
     }
 
     /**

@@ -55,9 +55,9 @@ abstract class Model
     /**
      * Update a model
      *
-     * @param integer $id
      * @param array $data
-     * @return void
+     * @param integer $id
+     * @return bool
      */
     public function update(array $data, int $id = null)
     {
@@ -213,7 +213,7 @@ abstract class Model
      * create a new row in the database
      *
      * @param array $post
-     * @return Model|bool
+     * @return App\Models\Model|bool
      */
     public function create(array $post)
     {
@@ -224,24 +224,11 @@ abstract class Model
         $statement = self::$pdo
         ->prepare("INSERT INTO {$this->table} ($names) VALUES ($question_marks);");
 
-        $values = array_values($post);
+        $post_values = array_values($post);
 
-        return ($statement->execute($values)) ? 
+        return ($statement->execute($post_values)) ? 
         $this->findBy('id', self::$pdo->lastInsertId()): false;
     }
 
-
-    /**
-     * Get the number of records
-     *
-     * @return integer
-     */
-    private function get_count(): int
-    {
-        $count_query = preg_replace("/(?<=SELECT)(.*)(?=FROM)/", ' COUNT(id) ', self::$queryString);
-        $statement = self::$pdo->prepare($count_query);
-        $statement->execute(self::$values);
-        return (int) $statement->fetch()[0];
-    }
 
 }

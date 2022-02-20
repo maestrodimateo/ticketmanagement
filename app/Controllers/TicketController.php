@@ -47,7 +47,7 @@ class TicketController extends Controller
      *
      * @return void
      */
-    public function post(NotificationMail $notificationMail, User $user_model)
+    public function post(User $user_model)
     {
         $bug_id = $this->request->getBody()['bug'] == "0" ? 'true' : 'false';
 
@@ -60,19 +60,18 @@ class TicketController extends Controller
         ]);
 
         $body = $this->request->getBody();
+        $body['user_id'] = auth()->id;
 
         // admins who receive the notification
-        $user = $user_model->select(['mail'])->where('is_agent', 0)->get();
-        $emails = array_map(fn ($user) => $user->mail, $user);
-
-        $body['user_id'] = auth()->id;
+        $users = $user_model->select(['mail'])->where('is_agent', User::ADMIN)->get();
+        $emails = array_map(fn ($user) => $user->mail, $users);
 
         // Ticket creation
         $new_ticket = $this->ticket_model->create($body);
         $new_ticket->update(['reference' => "ticket_0$new_ticket->id"]);
 
         // Email notification
-        $notificationMail->to($emails)->with($new_ticket)->send();
+        // $notificationMail->to($emails)->with($new_ticket)->send();
 
         flash('Ticket ajouté avec succès');
 

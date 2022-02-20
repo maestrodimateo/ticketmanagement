@@ -9,9 +9,9 @@ class CategoryController extends Controller
 {
     private Category $category_model;
 
-    public function __construct()
+    public function __construct(Category $category)
     {
-        $this->category_model = new Category;        
+        $this->category_model = $category;
     }
 
     /**

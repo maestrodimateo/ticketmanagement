@@ -54,7 +54,7 @@ class Auth
     /**
      * Return the connected user
      *
-     * @return Model|null
+     * @return App\Models\Model|null
      */
     public static function user()
     {

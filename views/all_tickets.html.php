@@ -1,6 +1,4 @@
-<?php
 
-use App\Models\Ticket; ?>
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4" data-page="all_tickets" id="page">
     <div class="d-block mb-4 mb-md-0">

@@ -10,19 +10,21 @@ trait Relationship
      *
      * @param string $model
      * @param string $foreignKey
-     * @return Model|null
+     * @return App\Models\Model|null
      */
     public function belongsTo(string $model, string $foreignKey)
     {
         $parent_model = new $model;
-        if (!$parent_model instanceof Model) throw new \Exception("The class $model is not an instance of " . Model::class, 1);
+        if (!$parent_model instanceof Model) {
+            throw new \Exception("The class $model is not an instance of " . Model::class, 1);
+        }
 
         $array_data = $parent_model->select()->where('id', $this->$foreignKey)->limit(1)->get();
         return array_shift($array_data);
     }
 
     /**
-     * get all the models
+     * Get all the models
      *
      * @param string $model
      * @param string $foreignKey
@@ -31,8 +33,11 @@ trait Relationship
     public function hasMany(string $model, string $foreignKey): array
     {
         $child_model = new $model;
-        if (!$child_model instanceof Model) throw new \Exception("The class $model is not an instance of " . Model::class, 1);
+        if (!$child_model instanceof Model) {
+            throw new \Exception("The class $model is not an instance of " . Model::class, 1);
+        }
 
         return $child_model->select()->where($foreignKey, $this->id)->get();
     }
+
 }

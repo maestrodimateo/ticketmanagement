@@ -34,9 +34,9 @@ abstract class Mailer
      * Set the recipients
      *
      * @param array $recipients
-     * @return self
+     * @return Services\MailHandler\Mailer
      */
-    public function to(array $recipients): self
+    public function to(array $recipients): Mailer
     {
         foreach ($recipients as $recipient) {
             $this->mail->addAddress($recipient);

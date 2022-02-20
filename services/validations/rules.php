@@ -33,11 +33,8 @@ return [
             throw new Exception("Il manque un paramètre à la règle required_if, exemple: required_if:false", 1);
         }
     
-        if ($condition === "true") {
-            
-            if ( empty($value_name) || is_null($value_name) ) {
-                return "Champs obligatoire";
-            }
+        if ($condition === "true" && empty($value_name) || is_null($value_name)) {
+            return "Champs obligatoire";
         }
     },
 

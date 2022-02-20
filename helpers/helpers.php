@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Model;
 use Http\Auth;
 use Http\Session;
 
@@ -124,7 +123,7 @@ if (! function_exists('request')) {
      * get an auth value
      *
      * @param string $key
-     * @return Model|null
+     * @return Http\Request|null
      */
     function request()
     {
