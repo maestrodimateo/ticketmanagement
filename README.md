@@ -1,9 +1,10 @@
 # Application de gestion de tickets
+Cette application a pour but de permettre aux fonctionnels de créer des tickets à la suite d'un problème technique afin que les personnes abilités puisse visualiser afin de resoudre ces problemes et enfin leur notifier que le problème a été résolu
 
 ## Installation
 
 - ### Pré-requis
-Pour pouvoir installer cette application vous devez avoir : 
+Pour installer cette application vous devez avoir : 
 1. Apache
 2. php 7.4 ou plus
 3. Mysql ou Maria DB

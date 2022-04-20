@@ -34,7 +34,7 @@
     <h1 class="mx-auto text-center"><?= $info['reference'] ?></h1>
     <main class="mt-3">
         <h2>Information ticket</h2>
-        <table>
+        <table aria-describedby="Information du ticket">
             <tr>
                 <th scope="row">Libellé</th>
                 <td><?= $info['label'] ?></td>
@@ -53,7 +53,7 @@
             </tr>
         </table>
         <h2>Information du déclarant</h2>
-        <table>
+        <table aria-describedby="Informations du déclarant">
             <tr>
                 <th scope="row">Nom(s) et prénom(s)</th>
                 <td><?= $info['user']['firstname'] .' '. $info['user']['name'] ?></td>

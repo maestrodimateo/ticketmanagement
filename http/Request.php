@@ -79,7 +79,7 @@ class Request
      * Validate post data
      *
      * @param array $rules
-     * @return void
+     * @return array
      */
     public function validate(array $rules)
     {

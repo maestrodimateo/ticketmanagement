@@ -18,7 +18,7 @@ class User extends Model
      *
      * @var array
      */
-    public static $credentials = ['mail', 'password'];
+    public static $credentials = ['u_email', 'u_password'];
 
 
     /**
@@ -37,7 +37,7 @@ class User extends Model
     public function my_declared_tickets(): array
     {
         return (new Ticket)->select()
-        ->where('user_id', auth()->id)
+        ->where('user_id', auth()->u_userid)
         ->orderBy('created_at', 'desc')->get();
     }
 
@@ -49,7 +49,7 @@ class User extends Model
     public function assigned_tickets(): array
     {
         return (new Ticket)->noTrashed()
-        ->andWhere('resolver_id', auth()->id)
+        ->andWhere('resolver_id', auth()->u_userid)
         ->orderBy('created_at', 'desc')->get();
     }
 

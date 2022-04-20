@@ -9,7 +9,7 @@ if (! function_exists('env')) {
      * Get all the environnement variables
      *
      * @param string $name
-     * @return void
+     * @return string|null
      */
     function env(string $name)
     {

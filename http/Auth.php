@@ -2,7 +2,6 @@
 namespace Http;
 
 use App\Models\User;
-use App\Models\Model;
 
 class Auth
 {
@@ -25,9 +24,13 @@ class Auth
 
         $current_user = $user->findBy($username, $credentials[$username]);
 
-        if (!$current_user) return false;
+        if (!$current_user) {
+            return false;
+        } 
 
-        if (!password_verify($credentials[$password], $current_user->{$password})) return false;
+        if (!password_verify($credentials[$password], $current_user->{$password})) {
+            return false;
+        }
 
         Session::set('auth', $current_user);
 

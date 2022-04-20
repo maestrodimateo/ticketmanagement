@@ -90,8 +90,8 @@ class Route
         $controller_instance = $container->get($this->controller);
         $controller_instance->init($request);
 
-        $params = array_values($this->params);
+        $parameters = array_values($this->params);
 
-        $container->call([$controller_instance, $this->method], $params);
+        $container->call([$controller_instance, $this->method], $parameters);
     }
 }

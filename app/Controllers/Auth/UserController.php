@@ -25,8 +25,8 @@ class UserController extends Controller
     public function login()
     {
         $this->request->validate([
-            'mail' => ['required', 'email'],
-            'password' => ['required'],
+            'u_email' => ['required', 'email'],
+            'u_password' => ['required'],
         ]);
 
         if (Auth::attempt($this->request->getBody())) {

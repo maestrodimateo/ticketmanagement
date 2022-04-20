@@ -1,4 +1,4 @@
-window.onload = function () {
+window.onload = () => {
     const page = document.getElementById('page')?.dataset.page
     const { protocol, hostname } = location
     const base_url = `${protocol}//${hostname}`

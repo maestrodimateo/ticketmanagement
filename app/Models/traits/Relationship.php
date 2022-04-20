@@ -10,16 +10,17 @@ trait Relationship
      *
      * @param string $model
      * @param string $foreignKey
+     * @param string $id if the id is named differently
      * @return App\Models\Model|null
      */
-    public function belongsTo(string $model, string $foreignKey)
+    public function belongsTo(string $model, string $foreignKey, $id = 'id')
     {
         $parent_model = new $model;
         if (!$parent_model instanceof Model) {
             throw new \Exception("The class $model is not an instance of " . Model::class, 1);
         }
 
-        $array_data = $parent_model->select()->where('id', $this->$foreignKey)->limit(1)->get();
+        $array_data = $parent_model->select()->where($id, $this->$foreignKey)->limit(1)->get();
         return array_shift($array_data);
     }
 

@@ -26,9 +26,9 @@ class TicketResource
             'created_at' => $this->ticket->created_at(),
             'closed_at' => $this->ticket->closed_at(),
             'user' => [
-                'name' => $this->user->nom,
-                'firstname' => $this->user->prenom,
-                'email' => $this->user->mail,
+                'name' => $this->user->u_userLname,
+                'firstname' => $this->user->u_username,
+                'email' => $this->user->u_email,
                 'service' => $this->user->service()->nom,
                 'department' => $this->user->service()->department()->nom,
             ]

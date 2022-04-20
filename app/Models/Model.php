@@ -180,7 +180,7 @@ abstract class Model
     }
 
     /**
-     * Get the corresponding model according to the id
+     * Get the corresponding model according to an attribute
      *
      * @param integer $id
      * @return Model|bool

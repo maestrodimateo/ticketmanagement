@@ -47,7 +47,7 @@ class TicketController extends Controller
      *
      * @return void
      */
-    public function post(User $user_model)
+    public function post(User $user_model, NotificationMail $notificationMail)
     {
         $bug_id = $this->request->getBody()['bug'] == "0" ? 'true' : 'false';
 
@@ -60,7 +60,7 @@ class TicketController extends Controller
         ]);
 
         $body = $this->request->getBody();
-        $body['user_id'] = auth()->id;
+        $body['user_id'] = auth()->u_userid;
 
         // admins who receive the notification
         $users = $user_model->select(['mail'])->where('is_agent', User::ADMIN)->get();
@@ -71,7 +71,7 @@ class TicketController extends Controller
         $new_ticket->update(['reference' => "ticket_0$new_ticket->id"]);
 
         // Email notification
-        // $notificationMail->to($emails)->with($new_ticket)->send();
+        $notificationMail->to($emails)->with($new_ticket)->send();
 
         flash('Ticket ajouté avec succès');
 
@@ -197,7 +197,7 @@ class TicketController extends Controller
      */
     public function assign(int $id)
     {
-        $this->ticket_model->update(['resolver_id' => auth()->id, 'state' => Ticket::PENDING], $id);
+        $this->ticket_model->update(['resolver_id' => auth()->u_userid, 'state' => Ticket::PENDING], $id);
 
         flash("Vous avez choisi Le ticket numéro $id");
 

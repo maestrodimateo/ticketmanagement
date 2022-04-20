@@ -6,7 +6,7 @@
     <title><?= $title ?? "Déclarer un ticket" ?></title>
     <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
 
-    <link type="text/css" href="/assets/vendor/notyf/notyf.min.css" rel="stylesheet">
+    <link type="text/css" href="/assets/vendors/notyf/notyf.min.css" rel="stylesheet">
     <link type="text/css" href="/assets/css/volt.css" rel="stylesheet">
 </head>
 
@@ -93,7 +93,7 @@
                                 <div class="media d-flex align-items-center">
                                     <img class="avatar rounded-circle" alt="Image placeholder" src="#">
                                     <div class="media-body ms-2 text-dark align-items-center d-none d-lg-block">
-                                        <span class="mb-0 font-small fw-bold text-gray-900"><?= auth()->nom .' '. auth()->prenom ?></span>
+                                        <span class="mb-0 font-small fw-bold text-gray-900"><?= auth()->u_username .' '. auth()->u_userLname ?></span>
                                     </div>
                                 </div>
                             </a>
@@ -116,10 +116,10 @@
         </nav>
         <?= $content ?>
     </main>
-    <script src="/assets/vendor/%40popperjs/core/dist/umd/popper.min.js"></script>
-    <script src="/assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="/assets/vendor/simple-datatables/dist/umd/simple-datatables.js"></script>
-    <script src="/assets/vendor/notyf/notyf.min.js"></script>
+    <script src="/assets/vendors/%40popperjs/core/dist/umd/popper.min.js"></script>
+    <script src="/assets/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/assets/vendors/simple-datatables/dist/umd/simple-datatables.js"></script>
+    <script src="/assets/vendors/notyf/notyf.min.js"></script>
     <script src="/assets/js/volt.js"></script>
     <script src="/assets/js/perso.js"></script>
 </body>

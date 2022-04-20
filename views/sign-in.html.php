@@ -35,7 +35,7 @@
 												<path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
 											</svg>
 										</span>
-										<input type="email" class="form-control" name="mail" placeholder="example@company.com" id="email" autofocus required>
+										<input type="email" class="form-control" name="u_email" placeholder="example@company.com" id="email" autofocus required>
 									</div>
 									<?= error('<p class = "text-danger">{mail}</p>') ?>
 								</div>
@@ -50,7 +50,7 @@
 														clip-rule="evenodd"></path>
 												</svg>
 											</span>
-											<input type="password" placeholder="Password" name = "password" class="form-control" id="password" required>
+											<input type="password" placeholder="Password" name = "u_password" class="form-control" id="password" required>
 										</div>
 										<?= error('<p class = "text-danger">{password}</p>') ?>
 									</div>
