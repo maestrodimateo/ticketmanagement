@@ -31,50 +31,50 @@
     </style>
 </head>
 <body>
-    <h1 class="mx-auto text-center"><?= $info['reference'] ?></h1>
+    <h1 class="mx-auto text-center"><?= $info->reference ?></h1>
     <main class="mt-3">
         <h2>Information ticket</h2>
         <table aria-describedby="Information du ticket">
             <tr>
                 <th scope="row">Libellé</th>
-                <td><?= $info['label'] ?></td>
+                <td><?= $info->label ?></td>
             </tr>
             <tr>
                 <th scope="row">Description</th>
-                <td><?php empty($info['description']) ? 'N/A' : $info['description'] ?></td>
+                <td><?php empty($info->description) ? 'N/A' : $info->description ?></td>
             </tr>
             <tr>
                 <th scope="row">Déclaré le</th>
-                <td><?= $info['created_at'] ?></td>
+                <td><?= $info->created_at ?></td>
             </tr>
             <tr>
                 <th scope="row">Clôturé le</th>
-                <td><?= $info['closed_at'] ?? 'N/A' ?></td>
+                <td><?= $info->closed_at ?? 'N/A' ?></td>
             </tr>
         </table>
         <h2>Information du déclarant</h2>
         <table aria-describedby="Informations du déclarant">
             <tr>
                 <th scope="row">Nom(s) et prénom(s)</th>
-                <td><?= $info['user']['firstname'] .' '. $info['user']['name'] ?></td>
+                <td><?= $info->user['firstname'] .' '. $info->user['name'] ?></td>
             </tr>
             <tr>
                 <th scope="row">Email</th>
-                <td><?= $info['user']['email'] ?></td>
+                <td><?= $info->user['email'] ?></td>
             </tr>
             <tr>
                 <th scope="row">Direction</th>
-                <td><?= $info['user']['department'] ?></td>
+                <td><?= $info->user['department'] ?></td>
             </tr>
             <tr>
                 <th scope="row">Service</th>
-                <td><?= $info['user']['service'] ?></td>
+                <td><?= $info->user['service'] ?></td>
             </tr>
         </table>
-        <?php if ($info['solution']): ?>
+        <?php if ($info->solution): ?>
             <div>
                 <h2>Solution</h2>
-                <p class="bg-primary" style="padding: 1rem;"><?= $info['solution'] ?></p>
+                <p class="bg-primary" style="padding: 1rem;"><?= $info->solution ?></p>
             </div>
         <?php endif ?>
         <p>

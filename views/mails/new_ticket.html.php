@@ -25,7 +25,7 @@
 </head>
 <body>
     <main>
-        <h1>Nouveau ticket de l'agent <?= $creator->nom .' '. $creator->prenom ?></h1>
+        <h1>Nouveau ticket de l'agent <?= $creator->u_userLname .' '. $creator->u_username ?></h1>
         <p>Le ticket numéro <?= $ticket->id ?> vient d'être créé.</p>
     </main>
 </body>

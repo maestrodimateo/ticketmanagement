@@ -63,8 +63,8 @@ class TicketController extends Controller
         $body['user_id'] = auth()->u_userid;
 
         // admins who receive the notification
-        $users = $user_model->select(['mail'])->where('is_agent', User::ADMIN)->get();
-        $emails = array_map(fn ($user) => $user->mail, $users);
+        $users = $user_model->select(['u_email'])->where('is_agent', User::ADMIN)->get();
+        $emails = array_map(fn ($user) => $user->u_email, $users);
 
         // Ticket creation
         $new_ticket = $this->ticket_model->create($body);
@@ -137,7 +137,7 @@ class TicketController extends Controller
     {
         $data = $this->ticket_resource($id)->attributes();
         $pdf->load_html('pdf/ticket', [
-            'info' => $data, 
+            'info' => (object) $data, 
             'printed_at' => Carbon::now()]
         )->download($data['reference']);
     }

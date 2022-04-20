@@ -63,7 +63,7 @@
                                             <div class="col ps-0 ms-2">
                                                 <div class="d-flex justify-content-between align-items-center">
                                                     <div>
-                                                        <h4 class="h6 mb-0 text-small"><?= auth()->nom ?></h4>
+                                                        <h4 class="h6 mb-0 text-small"><?= auth()->u_userLname ?></h4>
                                                     </div>
                                                     <div class="text-end"><small>il ya 2hrs</small></div>
                                                 </div>
