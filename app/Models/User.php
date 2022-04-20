@@ -10,6 +10,7 @@ class User extends Model
      */
     protected $table = 'users';
 
+
     const AGENT = 1;
     const ADMIN = 0;
 
