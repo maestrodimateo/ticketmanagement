@@ -30,7 +30,6 @@ class UserController extends Controller
         ]);
 
         if (Auth::attempt($this->request->getBody())) {
-
             return Response::redirect('/nouveau-ticket');
         }
 

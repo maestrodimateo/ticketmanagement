@@ -26,9 +26,9 @@ class Auth
 
         if (!$current_user) {
             return false;
-        } 
+        }
 
-        if (!password_verify($credentials[$password], $current_user->{$password})) {
+        if ($credentials[$password] !== $current_user->{$password}) {
             return false;
         }
 
